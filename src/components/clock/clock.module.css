@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+  place-items: center;
+  flex-direction: column;
+}
+
+.container p {
+  font-size: 38px;
+  font-weight: 600;
+}

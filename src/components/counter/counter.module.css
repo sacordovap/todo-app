@@ -1,0 +1,29 @@
+.container {
+  gap: 10px;
+  display: flex;
+  place-items: center;
+  flex-direction: column;
+
+  margin: 20px auto;
+  padding: 10px;
+  max-width: 400px;
+  background-color: var(--slate-950);
+
+  border-radius: 14px;
+}
+
+.container p {
+  font-size: 30px;
+}
+
+.button {
+  height: 28px;
+  width: 120px;
+  border: 0;
+  border-radius: 10px;
+}
+
+.disabled {
+  color: rgba(255, 255, 255, 0.506);
+  background-color: var(--rose-700);
+}
