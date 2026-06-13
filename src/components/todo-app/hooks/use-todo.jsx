@@ -1,11 +1,31 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 /* "Hook personalizado": guarda los datos*/
 export function useTodo() {
   const [task, setTask] = useState(""); /*guarda el input*/
-  const [todos, setTodos] = useState([]); /*guarda la lista completa de tarea*/
+
+  const [priority, setPriority] = useState("Media");
+  const [filter, setFilter] = useState("Todas");
+
+  const [todos, setTodos] = useState(() => {
+    const saved = localStorage.getItem("my-todo");
+    return saved ? JSON.parse(saved) : [];
+  }); /*guarda la lista completa de tarea*/
 
   const noTodos = todos.length === 0; /*Hay tareas? */
+
+  useEffect(() => {
+    localStorage.setItem("my-todo", JSON.stringify(todos));
+  }, [todos]);
+
+  const filteredTodos = todos.filter((t) => {
+    if (filter === "Pendientes") return !t.complete;
+    if (filter === "Completadas") return t.complete;
+    return true;
+  });
+
+  const remainingTodo = todos.filter((t) => !t.complete).length;
+
   /*Crear tarea */
   const addTodo = () => {
     if (!task.trim()) return; /*Si el texto está vacío, no hacemos nada*/
@@ -14,6 +34,7 @@ export function useTodo() {
       id: Date.now(), // ID basado en el tiempo
       text: task, // Usa lo que escribiste en el input
       complete: false, // Empieza como incompleta
+      priority: priority,
     };
 
     setTodos([
@@ -45,11 +66,16 @@ export function useTodo() {
   return {
     task,
     setTask,
-    todos,
+    todos: filteredTodos,
+    priority,
+    setPriority,
+    filter,
+    setFilter,
+    remainingTodo,
     noTodos,
     addTodo,
     deleteTodo,
     completeTodo,
-    editTodo
+    editTodo,
   };
 }

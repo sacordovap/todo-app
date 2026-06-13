@@ -7,6 +7,10 @@ export function Todo({ todo, deleteTodo, completeTodo, editTodo }) {
   const [newText, setNewText] = useState(todo.text);
 
   const handleEdit = () => {
+    if (newText.trim() === "") {
+      alert("La tarea no puede estar vacía");
+      return;
+    }    
     if (isEditing) {
       editTodo(todo.id, newText); // Guardamos el cambio
     }
@@ -14,22 +18,54 @@ export function Todo({ todo, deleteTodo, completeTodo, editTodo }) {
   };
 
   return (
-    <li className={styles.item}>
-      <button onClick={() => completeTodo(todo.id)}>✓</button>
+    <li className={styles.todoItem}>
       {isEditing ? (
-        <input value={newText} onChange={(e) => setNewText(e.target.value)} />
+        <input
+          className={styles.editInput}
+          value={newText}
+          onChange={(e) => setNewText(e.target.value)}
+        />
       ) : (
-        <span className={todo.complete ? styles.completed : ""}>
-          {todo.text}
-        </span>
+        <>
+          <button
+            className={styles.btnCheck}
+            onClick={() => completeTodo(todo.id)}
+          >
+            {todo.complete ? "✅" : "⬜"}
+          </button>
+
+          <span
+            className={`${styles.text} ${todo.complete ? styles.completed : ""}`}
+          >
+            {todo.text}
+          </span>
+          {/* <span className={styles.actions}>{todo.priority}</span> */}
+        </>
       )}
-      <button
-        onClick={handleEdit}
-        disabled={todo.complete} //Si todo.complete es true, el botón se bloquea
-      >
-        {isEditing ? "Guardar" : "Editar"}
-      </button>
-      <button onClick={() => deleteTodo(todo.id)}>X</button>
+
+      <div className={styles.actions}>
+        {todo.complete ? (
+          <p />
+        ) : (
+          <button
+            className={styles.btnEdit}
+            onClick={handleEdit}
+            disabled={todo.complete} //Si todo.complete es true, el botón se bloquea
+          >
+            {isEditing ? "💾" : "✏️"}
+          </button>
+        )}
+        {isEditing ? (
+          <p />
+        ) : (
+          <button
+            className={styles.btnDelete}
+            onClick={() => deleteTodo(todo.id)}
+          >
+            🗑️
+          </button>
+        )}
+      </div>
     </li>
   );
 }

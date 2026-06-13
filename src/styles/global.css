@@ -1,6 +1,6 @@
 :root {
-  --slate-900: oklch(20.8% 0.042 265.755);
-  --slate-950: oklch(12.9% 0.042 264.695);
+  --slate-900: oklch(23.676% 0.08748 264.744);
+  --slate-950: oklch(16.791% 0.06607 267.181);
   --rose-700: oklch(51.4% 0.222 16.935);
   --olive-200: oklch(93% 0.007 106.5);
 }
@@ -24,4 +24,5 @@ body {
 
   color: var(--olive-200);
   background-color: var(--slate-900);
+
 }

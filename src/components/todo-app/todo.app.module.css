@@ -1,0 +1,65 @@
+.container {
+  max-width: 500px;
+  padding: 40px;
+  background-color: var(--slate-950);
+  border-radius: 20px;
+  box-shadow: 0 25px 25px -25px rgba(196, 185, 185, 0.5);
+  border: 1px solid rgba(253, 248, 248, 0.05);
+}
+
+.title {
+  text-align: center;
+  color: var(--olive-200);
+  margin-bottom: 32px; 
+  font-size: 24px;
+}
+
+.filterGroup {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 32px; 
+}
+
+.filterBtn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--olive-200);
+  background: transparent;
+  color: var(--olive-200);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filterBtn:hover {
+  background: var(--olive-200);
+  color: var(--slate-900);
+}
+
+.filterBtn.active {
+  background-color: var(--olive-200);
+  color: var(--slate-900);
+  font-weight: bold;
+}
+
+.noTodos {
+  text-align: center;
+  color: #64748b;
+  font-style: italic;
+  margin-top: 32px; 
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.editInput {
+  flex: 1;
+  padding: 8px;
+  border: 2px solid var(--olive-200);
+  border-radius: 6px;
+  background-color: var(--slate-900);
+  color: white;
+}
